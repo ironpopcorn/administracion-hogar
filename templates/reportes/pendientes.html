@@ -1,6 +1,13 @@
 {% extends 'layout.html' %} {% block content %}
 <div>
     <h1>Reportes: Pendientes</h1>
-    {{lista_pendientes | safe}}
+    <form action="{{url_for('reportes.pendientes')}}" method="get">
+        {{ departamentos_select | safe}} {{ cuentas_select | safe}}
+        <button type="submit">Buscar</button>
+    </form>
+    {{lista_pendientes | safe}} {% if total > 0 %}
+    <p>
+        <strong>TOTAL:</strong> {{ '$ {:,d}'.format(total).replace(',','.') }}</p>
+    {% endif %}
 </div>
 {% endblock %}

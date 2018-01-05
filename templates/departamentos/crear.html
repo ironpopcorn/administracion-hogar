@@ -1,13 +1,33 @@
 {% extends 'layout.html' %} {% block content %}
 <div>
     <h1>Departamentos</h1>
-    <h2>Crear</h2>
     <form action="{{url_for('departamentos.crear')}}" method="POST">
-        <input type="text" name="depa_calle" placeholder="Calle" required>
-        <input type="number" min="1" max="29999" name="depa_numero" placeholder="Número" required>
-        <input type="text" name="depa_comuna" placeholder="Comuna" required>
-        <input type="number" min="1" max="8" name="depa_habitantes" placeholder="Habitantes" required>
-        <button type="submit">Guardar</button>
+        <legend>Crear</legend>
+        <fieldset>
+            <div class="form-group">
+                <label for="depa_calle" class="col-sm-2 col-form-label">Calle</label>
+                <input class="form-control" type="text" name="depa_calle" id="depa_calle" required>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label for="depa_numero" class="col-sm-2 col-form-label">Número</label>
+                <input class="form-control" type="number" min="1" max="29999" name="depa_numero" id="depa_numero" required>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label for="depa_comuna" class="col-sm-2 col-form-label">Comuna</label>
+                <input class="form-control" type="text" name="depa_comuna" id="depa_comuna" required>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label for="depa_habitantes" class="col-sm-2 col-form-label">Habitantes</label>
+                <input class="form-control" type="number" min="1" max="8" name="depa_habitantes" id="depa_habitantes" required>
+            </div>
+        </fieldset>
+        <button class="btn btn-primary" type="submit">Guardar</button>
     </form>
 </div>
 {% endblock %}

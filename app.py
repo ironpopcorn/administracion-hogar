@@ -1,5 +1,5 @@
+""" Administración del Hogar en Flask """
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
 
 from src.shared.db import db
 from src.pages.cuentas import cuentas
@@ -7,21 +7,23 @@ from src.pages.departamentos import departamentos
 from src.pages.registros import registros
 from src.pages.reportes import reportes
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/home.db'
-db.app = app
-db.init_app(app)
+APP = Flask(__name__)
+APP.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/home.db'
+db.app = APP
+db.init_app(APP)
 db.create_all()
 
-app.register_blueprint(cuentas)
-app.register_blueprint(departamentos)
-app.register_blueprint(registros)
-app.register_blueprint(reportes)
+APP.register_blueprint(cuentas)
+APP.register_blueprint(departamentos)
+APP.register_blueprint(registros)
+APP.register_blueprint(reportes)
 
-@app.route('/')
+
+@APP.route('/')
 def home():
+    """ Página de Inicio """
     return render_template('home.html')
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    APP.run(debug=True)

@@ -1,10 +1,15 @@
 {% extends 'layout.html' %} {% block content %}
 <div>
     <h1>Cuentas</h1>
-    <h2>Crear</h2>
     <form action="{{url_for('cuentas.crear')}}" method="POST">
-        <input type="text" name="cuenta_nombre" placeholder="Nombre de cuenta" required>
-        <button type="submit">Guardar</button>
+        <legend>Crear</legend>
+        <fieldset>
+            <div class="form-group">
+                <label for="cuenta_nombre" class="col-sm-2 col-form-label">Nombre</label>
+                <input class="form-control" type="text" name="cuenta_nombre" id="cuenta_nombre" required>
+            </div>
+        </fieldset>
+        <button class="btn btn-primary" type="submit">Guardar</button>
     </form>
 </div>
 {% endblock %}

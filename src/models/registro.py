@@ -42,8 +42,26 @@ class Registro(db.Model):
         return regs
 
     @staticmethod
-    def get_all_por_estado(estado):
-        regs = Registro.query.filter_by(estado=estado).all()
+    def get_all_por_estado(estado, departamento=None):
+        regs = None
+        if departamento is None:
+            regs = Registro.query.filter_by(estado=estado).all()
+        else:
+            regs = Registro.query.filter_by(
+                estado=estado, departamento_id=departamento).all()
+        df = pd.DataFrame.from_records([r.to_dict() for r in regs])
+        if len(regs) > 0:
+            df.drop(columns=['departamento_id', 'cuenta_id'], inplace=True)
+            df.set_index('id', inplace=True)
+        return df
+
+    @staticmethod
+    def get_all_por_cuenta(cuenta, departamento=None):
+        regs = None
+        if departamento is None:
+            regs = Registro.query.filter_by(cuenta_id=cuenta).all()
+        else:
+            regs = Registro.query.filter_by(cuenta_id=cuenta, departamento_id=departamento).all()
         df = pd.DataFrame.from_records([r.to_dict() for r in regs])
         if len(regs) > 0:
             df.drop(columns=['departamento_id', 'cuenta_id'], inplace=True)

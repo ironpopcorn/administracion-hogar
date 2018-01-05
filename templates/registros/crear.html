@@ -1,13 +1,33 @@
 {% extends 'layout.html' %} {% block content %}
 <div>
     <h1>Registros</h1>
-    <h2>Crear</h2>
     <form action="{{url_for('registros.crear')}}" method="POST">
-        {{ departamentos_select | safe}}
-        {{ cuentas_select | safe}}
-        <input type="month" name="reg_fecha" placeholder="Mes" required>
-        <input type="number" min="1" name="reg_valor" placeholder="Valor" required>
-        <button type="submit">Guardar</button>
+        <legend>Crear</legend>
+        <fieldset>
+            <div class="form-group">
+                <label for="cuenta_nombre" class="col-sm-2 col-form-label">Departamento</label>
+                {{ departamentos_select | safe}}
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label for="cuenta_nombre" class="col-sm-2 col-form-label">Cuenta</label>
+                {{ cuentas_select | safe}}
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label for="reg_fecha" class="col-sm-2 col-form-label">Mes</label>
+                <input class="form-control" type="month" name="reg_fecha" id="reg_fecha" required>
+            </div>
+        </fieldset>
+        <fieldset>
+            <div class="form-group">
+                <label for="reg_valor" class="col-sm-2 col-form-label">Valor</label>
+                <input class="form-control" type="number" min="1" name="reg_valor" id="reg_valor" required>
+            </div>
+        </fieldset>
+        <button class="btn btn-primary" type="submit">Guardar</button>
     </form>
 </div>
 {% endblock %}

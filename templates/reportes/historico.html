@@ -2,11 +2,15 @@
 <div>
     <h1>Reportes: Histórico</h1>
     <form action="{{url_for('reportes.historico')}}" method="get">
-        {{ cuentas_select | safe}}
+        {{ departamentos_select | safe}} {{ cuentas_select | safe}}
         <button type="submit">Buscar</button>
     </form>
-    {% if cuenta_name %}
-    <p>{{cuenta_name}}</p>
-    {% endif %}
+    {% if departamento_name and cuenta_name %}
+    <h2>{{departamento_name}}: {{cuenta_name}}</h2>
+    {{ historico | safe }} {% if total > 0 %}
+    <p>
+        <strong>TOTAL:</strong> {{ '$ {:,d}'.format(total).replace(',','.') }}</p>
+    <link rel="stylesheet" href="{{cdn_css}}" type="text/css">
+    <script src="{{cdn_js}}"></script> {{tag_script | safe}} {{tag_div | safe}} {% endif %} {% endif %}
 </div>
 {% endblock %}

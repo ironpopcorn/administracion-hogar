@@ -21,6 +21,11 @@ class Cuenta(db.Model):
         }
 
     @staticmethod
+    def get(i):
+        cta = Cuenta.query.filter_by(id=i).first()
+        return cta
+
+    @staticmethod
     def get_all(as_dataframe=False):
         ctas = Cuenta.query.all()
         if as_dataframe:
@@ -32,14 +37,17 @@ class Cuenta(db.Model):
         return ctas
 
     @staticmethod
-    def get_all_to_html_select(name):
-        select = '<select name="{0}">'.format(name)
+    def get_all_to_html_select(name, selected=None):
+        select = '<select class="form-control" name="{0}">'.format(name)
         select = select + '<option>Seleccione</option>'
         
         ctas = Cuenta.query.all()
         if len(ctas) > 0:
             for cta in ctas:
-                select = select + '<option value="{0}">{1}</option>'.format(cta.id, cta.nombre)
+                sel=''
+                if selected == cta.id:
+                    sel=' selected'
+                select = select + '<option value="{0}"{2}>{1}</option>'.format(cta.id, cta.nombre, sel)
 
         select = select + '</select>'
         return select

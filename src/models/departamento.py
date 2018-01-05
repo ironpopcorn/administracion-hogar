@@ -27,6 +27,11 @@ class Departamento(db.Model):
         }
 
     @staticmethod
+    def get(i):
+        depa = Departamento.query.filter_by(id=i).first()
+        return depa
+
+    @staticmethod
     def get_all(as_dataframe=False):
         depas = Departamento.query.all()
         if as_dataframe:
@@ -38,14 +43,19 @@ class Departamento(db.Model):
         return depas
 
     @staticmethod
-    def get_all_to_html_select(name):
-        select = '<select name="{0}">'.format(name)
+    def get_all_to_html_select(name, selected=None):
+        select = '<select class="form-control" name="{0}">'.format(name)
         select = select + '<option>Seleccione</option>'
         
         depas = Departamento.query.all()
         if len(depas) > 0:
             for depa in depas:
-                select = select + '<option value="{0}">{1} {2}</option>'.format(depa.id, depa.calle, depa.numero)
+                sel = ''
+                if selected == depa.id:
+                    sel = ' selected'
+                select = select + \
+                    '<option value="{0}"{3}>{1} {2}</option>'.format(
+                        depa.id, depa.calle, depa.numero, sel)
 
         select = select + '</select>'
         return select
