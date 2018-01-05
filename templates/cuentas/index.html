@@ -1,0 +1,13 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+    <h1>Cuentas</h1>
+    <div class="opciones">
+        <ul>
+            <li>
+                <a href="{{url_for('cuentas.crear')}}">Crear</a>
+            </li>
+        </ul>
+    </div>
+    {{lista_cuentas | safe}}
+</div>
+{% endblock %}

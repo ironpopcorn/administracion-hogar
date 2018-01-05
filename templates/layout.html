@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Administración del Hogar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>
+                <a href="{{url_for('home')}}">Administración del Hogar</a>
+            </h1>
+            <ul>
+                <li>
+                    <a href="{{url_for('cuentas.index')}}">Cuentas</a>
+                </li>
+                <li>
+                    <a href="{{url_for('departamentos.index')}}">Departamentos</a>
+                </li>
+                <li>
+                    <a href="{{url_for('registros.index')}}">Registros</a>
+                </li>
+                <li>
+                    <a href="{{url_for('reportes.index')}}">Reportes</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div class="content">
+        <div class="container">
+            {% block content %} {% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>

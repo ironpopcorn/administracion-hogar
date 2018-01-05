@@ -1,0 +1,13 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+    <h1>Departamentos</h1>
+    <div class="opciones">
+        <ul>
+            <li>
+                <a href="{{url_for('departamentos.crear')}}">Crear</a>
+            </li>
+        </ul>
+    </div>
+    {{lista_departamentos | safe}}
+</div>
+{% endblock %}

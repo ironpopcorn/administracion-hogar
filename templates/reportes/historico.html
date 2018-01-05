@@ -1,0 +1,12 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+    <h1>Reportes: Histórico</h1>
+    <form action="{{url_for('reportes.historico')}}" method="get">
+        {{ cuentas_select | safe}}
+        <button type="submit">Buscar</button>
+    </form>
+    {% if cuenta_name %}
+    <p>{{cuenta_name}}</p>
+    {% endif %}
+</div>
+{% endblock %}

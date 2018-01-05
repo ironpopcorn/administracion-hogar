@@ -1,0 +1,13 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+    <h1>Registros</h1>
+    <h2>Crear</h2>
+    <form action="{{url_for('registros.crear')}}" method="POST">
+        {{ departamentos_select | safe}}
+        {{ cuentas_select | safe}}
+        <input type="month" name="reg_fecha" placeholder="Mes" required>
+        <input type="number" min="1" name="reg_valor" placeholder="Valor" required>
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+{% endblock %}

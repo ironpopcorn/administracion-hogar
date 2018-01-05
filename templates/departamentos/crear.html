@@ -1,0 +1,13 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+    <h1>Departamentos</h1>
+    <h2>Crear</h2>
+    <form action="{{url_for('departamentos.crear')}}" method="POST">
+        <input type="text" name="depa_calle" placeholder="Calle" required>
+        <input type="number" min="1" max="29999" name="depa_numero" placeholder="Número" required>
+        <input type="text" name="depa_comuna" placeholder="Comuna" required>
+        <input type="number" min="1" max="8" name="depa_habitantes" placeholder="Habitantes" required>
+        <button type="submit">Guardar</button>
+    </form>
+</div>
+{% endblock %}

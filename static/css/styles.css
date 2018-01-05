@@ -1,0 +1,104 @@
+html, body {
+    margin: 0;
+    height: 100%;
+    color: #333333;
+    font-size: 0.9em;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e7e7e7;
+}
+
+header {
+    border-bottom: 1px solid #ccc;
+}
+
+header nav a, .opciones a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    transition: 100ms;
+}
+
+header nav a:hover {
+    background: #efefef;
+}
+
+header nav h1 {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+header nav h1 a {
+    padding: 0.35em 1em 0.5em 1em;
+}
+
+header nav ul, .opciones ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+header nav li, .opciones li {
+    display: inline-block;
+}
+
+header nav li a {
+    padding: 1em 2em;
+}
+
+.content {
+    border-top: 1px solid #efefef;
+}
+
+.container {
+    width: 80%;
+    margin: 2em auto 0 auto;
+}
+
+.container h1 {
+    color: #888;
+    text-transform: uppercase;
+}
+
+.container h2 {
+    color: #333;
+}
+
+.dataframe {        
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+}
+
+.dataframe thead th {
+    border-bottom: 1px solid #ccc;
+}
+
+.dataframe tr {
+    transition: 100ms;
+}
+
+.dataframe tr:hover {
+    background: #efefef;
+}
+
+.dataframe th, .dataframe td {
+    padding: 0.25em 1em;
+    border: none;
+    border-right: 1px solid #ccc;
+    text-align: right !important;
+}
+
+.dataframe td:last-child, .dataframe th:last-child {
+    border-right: none;
+}
+
+.opciones {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+
+.opciones a:hover {
+    text-decoration: underline;
+}

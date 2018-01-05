@@ -1,0 +1,13 @@
+{% extends 'layout.html' %} {% block content %}
+<div>
+    <h1>Reportes</h1>
+    <ul>
+        <li>
+            <a href="{{url_for('reportes.pendientes')}}">Pendientes</a>
+        </li>
+        <li>
+            <a href="{{url_for('reportes.historico')}}">Histórico</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
