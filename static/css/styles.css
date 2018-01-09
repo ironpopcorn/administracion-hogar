@@ -14,29 +14,13 @@ html, body {
 
 .dataframe {        
     width: 100%;
-    border: none;
-    border-collapse: collapse;
-}
-
-.dataframe thead th {
-    border-bottom: 1px solid #ccc;
 }
 
 .dataframe tr {
     transition: 100ms;
 }
 
-.dataframe tr:hover {
-    background: #efefef;
-}
-
 .dataframe th, .dataframe td {
     padding: 0.25em 1em;
-    border: none;
-    border-right: 1px solid #ccc;
     text-align: right !important;
-}
-
-.dataframe td:last-child, .dataframe th:last-child {
-    border-right: none;
 }

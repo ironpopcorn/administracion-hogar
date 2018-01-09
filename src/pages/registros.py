@@ -13,7 +13,8 @@ registros = Blueprint('registros', __name__)
 @registros.route('/registros/')
 def index():
     df = Registro.get_all(as_dataframe=True)
-    return render_template('registros/index.html', lista_registros=df.to_html())
+    df = df[['id', 'departamento', 'cuenta', 'fecha', 'estado', 'valor']]
+    return render_template('registros/index.html', lista_registros=df.to_html(index=False, classes=["table-bordered", "table-hover"]))
 
 
 @registros.route('/registros/crear', methods=['GET', 'POST'])

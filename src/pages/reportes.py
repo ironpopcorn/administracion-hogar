@@ -21,20 +21,23 @@ def index():
 def pendientes():
     depa = request.args.get('departamento', default=None, type=int)
     if depa is None:
-        depas = Departamento.get_all_to_html_select('departamento')
+        depas = Departamento.get_all_to_html_select(
+            'departamento', classes="form-control-sm mx-2",)
         df = Registro.get_all_por_estado('pendiente')
+        df = df[['id', 'departamento', 'cuenta', 'fecha', 'valor']]
         total = 0
         if len(df) > 0:
             total = df['valor'].sum()
-        return render_template('reportes/pendientes.html', departamentos_select=depas, lista_pendientes=df.to_html(), total=total)
+        return render_template('reportes/pendientes.html', departamentos_select=depas, lista_pendientes=df.to_html(index=False, classes=["table-bordered", "table-hover"]), total=total)
     else:
         depas = Departamento.get_all_to_html_select(
-            'departamento', selected=depa)
+            'departamento', classes="form-control-sm mx-2", selected=depa)
         df = Registro.get_all_por_estado('pendiente', departamento=depa)
+        df = df[['id', 'departamento', 'cuenta', 'fecha', 'valor']]
         total = 0
         if len(df) > 0:
             total = df['valor'].sum()
-        return render_template('reportes/pendientes.html', departamentos_select=depas, lista_pendientes=df.to_html(), total=total)
+        return render_template('reportes/pendientes.html', departamentos_select=depas, lista_pendientes=df.to_html(index=False, classes=["table-bordered", "table-hover"]), total=total)
 
 
 @reportes.route('/reportes/historico')
@@ -42,16 +45,20 @@ def historico():
     depa = request.args.get('departamento', default=None, type=int)
     cuenta = request.args.get('cuenta', default=None, type=int)
     if cuenta is None or depa is None:
-        depas = Departamento.get_all_to_html_select('departamento')
-        ctas = Cuenta.get_all_to_html_select('cuenta')
+        depas = Departamento.get_all_to_html_select(
+            'departamento', classes="form-control-sm mx-2")
+        ctas = Cuenta.get_all_to_html_select(
+            'cuenta', classes="form-control-sm mx-2")
         return render_template('reportes/historico.html', departamentos_select=depas, cuentas_select=ctas)
     else:
         departamento = Departamento.get(depa)
         departamento_name = departamento.calle + ' ' + str(departamento.numero)
-        depas = Departamento.get_all_to_html_select('departamento', selected=depa)
+        depas = Departamento.get_all_to_html_select('departamento', classes="form-control-sm mx-2", selected=depa)
         cta = Cuenta.get(cuenta)
-        ctas = Cuenta.get_all_to_html_select('cuenta', selected=cuenta)
+        ctas = Cuenta.get_all_to_html_select(
+            'cuenta', classes="form-control-sm mx-2", selected=cuenta)
         df = Registro.get_all_por_cuenta(cuenta, departamento=depa)
+        df = df[['id', 'fecha', 'estado', 'valor']]
         total = 0
         tag_script = ''
         tag_div = ''
@@ -68,5 +75,5 @@ def historico():
             tag_script, tag_div = components(graph)
             cdn_js = CDN.js_files[0]
             cdn_css = CDN.css_files[0]
-        return render_template('reportes/historico.html', departamentos_select=depas, departamento_name=departamento_name, cuentas_select=ctas, cuenta_name=cta.nombre, historico=df.to_html(), total=total, tag_script=tag_script, tag_div=tag_div, cdn_js=cdn_js, cdn_css=cdn_css)
+        return render_template('reportes/historico.html', departamentos_select=depas, departamento_name=departamento_name, cuentas_select=ctas, cuenta_name=cta.nombre, historico=df.to_html(index=False, classes=["table-bordered", "table-hover"]), total=total, tag_script=tag_script, tag_div=tag_div, cdn_js=cdn_js, cdn_css=cdn_css)
     

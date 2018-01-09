@@ -10,7 +10,8 @@ departamentos = Blueprint('departamentos', __name__)
 @departamentos.route('/departamentos/')
 def index():
     df = Departamento.get_all(as_dataframe=True)
-    return render_template('departamentos/index.html', lista_departamentos=df.to_html())
+    df = df[['id', 'calle', 'numero', 'comuna', 'habitantes']]
+    return render_template('departamentos/index.html', lista_departamentos=df.to_html(index=False, classes=["table-bordered", "table-hover"]))
 
 
 @departamentos.route('/departamentos/crear', methods=['GET', 'POST'])

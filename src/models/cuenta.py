@@ -30,15 +30,14 @@ class Cuenta(db.Model):
         ctas = Cuenta.query.all()
         if as_dataframe:
             df = pd.DataFrame.from_records([c.to_dict() for c in ctas])
-            if len(ctas) > 0:
-                df.set_index('id', inplace=True)
             return df
         
         return ctas
 
     @staticmethod
-    def get_all_to_html_select(name, selected=None):
-        select = '<select class="form-control" name="{0}">'.format(name)
+    def get_all_to_html_select(name, selected=None, classes=""):
+        select = '<select class="form-control {1}" name="{0}" id="{0}">'.format(
+            name, classes)
         select = select + '<option>Seleccione</option>'
         
         ctas = Cuenta.query.all()

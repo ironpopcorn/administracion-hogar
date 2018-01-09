@@ -10,7 +10,8 @@ cuentas = Blueprint('cuentas', __name__)
 @cuentas.route('/cuentas/')
 def index():
     df = Cuenta.get_all(as_dataframe=True)
-    return render_template('cuentas/index.html', lista_cuentas=df.to_html())
+    df = df[['id', 'nombre']]
+    return render_template('cuentas/index.html', lista_cuentas=df.to_html(index=False, classes=["table-bordered", "table-hover"]))
 
 
 @cuentas.route('/cuentas/crear', methods=['GET', 'POST'])

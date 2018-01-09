@@ -36,15 +36,14 @@ class Departamento(db.Model):
         depas = Departamento.query.all()
         if as_dataframe:
             df = pd.DataFrame.from_records([d.to_dict() for d in depas])
-            if len(depas) > 0:
-                df.set_index('id', inplace=True)
             return df
 
         return depas
 
     @staticmethod
-    def get_all_to_html_select(name, selected=None):
-        select = '<select class="form-control" name="{0}">'.format(name)
+    def get_all_to_html_select(name, selected=None, classes=""):
+        select = '<select class="form-control {1}" name="{0}" id="{0}">'.format(
+            name, classes)
         select = select + '<option>Seleccione</option>'
         
         depas = Departamento.query.all()

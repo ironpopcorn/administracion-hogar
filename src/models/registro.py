@@ -34,9 +34,6 @@ class Registro(db.Model):
         regs = Registro.query.all()
         if as_dataframe:
             df = pd.DataFrame.from_records([r.to_dict() for r in regs])
-            if len(regs) > 0:
-                df.drop(columns=['departamento_id', 'cuenta_id'], inplace=True)
-                df.set_index('id', inplace=True)
             return df
 
         return regs
@@ -50,9 +47,6 @@ class Registro(db.Model):
             regs = Registro.query.filter_by(
                 estado=estado, departamento_id=departamento).all()
         df = pd.DataFrame.from_records([r.to_dict() for r in regs])
-        if len(regs) > 0:
-            df.drop(columns=['departamento_id', 'cuenta_id'], inplace=True)
-            df.set_index('id', inplace=True)
         return df
 
     @staticmethod
@@ -63,9 +57,6 @@ class Registro(db.Model):
         else:
             regs = Registro.query.filter_by(cuenta_id=cuenta, departamento_id=departamento).all()
         df = pd.DataFrame.from_records([r.to_dict() for r in regs])
-        if len(regs) > 0:
-            df.drop(columns=['departamento_id', 'cuenta_id'], inplace=True)
-            df.set_index('id', inplace=True)
         return df
 
     def save(self):

@@ -1,9 +1,10 @@
 {% extends 'layout.html' %} {% block content %}
 <div>
     <h1>Reportes: Pendientes</h1>
-    <form action="{{url_for('reportes.pendientes')}}" method="get">
-        {{ departamentos_select | safe}} {{ cuentas_select | safe}}
-        <button type="submit">Buscar</button>
+    <form class="form-inline mt-5 mb-4" action="{{url_for('reportes.pendientes')}}" method="get">
+        <label for="departamento" class="col-form-label col-form-label-sm">Departamentos</label>
+        {{ departamentos_select | safe}}
+        <button class="btn btn-primary btn-sm ml-4" type="submit">Buscar</button>
     </form>
     {{lista_pendientes | safe}} {% if total > 0 %}
     <p>
